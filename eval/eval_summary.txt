@@ -1,0 +1,12 @@
+CONFIG=config/default.yaml
+Per-check metrics (case-level): TP/FP/FN, Precision/Recall/F1
+
+Currencies: TP=2 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Dates: TP=3 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Non-translate (Emails): TP=1 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Non-translate (IDs): TP=1 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Non-translate (URLs): TP=1 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Numbers: TP=1 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Percentages: TP=2 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Ranges: TP=2 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00
+Units: TP=3 FP=0 FN=0 Prec=1.00 Rec=1.00 F1=1.00

@@ -1,0 +1,32 @@
+app:
+  title: "TransQA — Perfil Cliente Demo (EN/ES → PT)"
+  default_pair: "EN->PT"
+
+checks:
+  enabled:
+    - nontranslate
+    - numbers
+    - percentages
+    - currencies
+    - units
+    - ranges
+    # opcional (se quiseres): - punctuation
+    # Nota: neste perfil não ativamos 'dates' para evitar avisos frequentes de ambiguidade.
+
+rules:
+  # Este cliente trabalha apenas com EUR
+  currency_symbols:
+    - "€"
+
+  # Mesmo que no futuro ligues 'dates', aqui não queremos avisos de ambiguidade
+  warn_ambiguous_numeric_dates: false
+
+  # Unidades relevantes para o cliente (lista reduzida para a demo)
+  units:
+    - mg
+    - g
+    - kg
+    - mm
+    - cm
+    - m
+    - °C

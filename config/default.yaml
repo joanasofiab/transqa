@@ -1,0 +1,19 @@
+app:
+  title: "TransQA — QA Automático (EN/ES → PT)"
+  default_pair: "EN->PT"
+
+checks:
+  enabled:
+    - nontranslate
+    - numbers
+    - dates
+    - percentages
+    - currencies
+    - units
+    - ranges
+    - punctuation
+
+rules:
+  currency_symbols: ["€", "$", "£"]
+  warn_ambiguous_numeric_dates: true
+  units: ["mg", "g", "kg", "mm", "cm", "m", "km", "mL", "L", "°C", "km/h"]

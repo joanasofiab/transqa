@@ -1,0 +1,15 @@
+# Ambiente virtual
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/
+
+# Ignorar tudo em eval...
+eval/*
+# ...mas manter estes dois como evidência
+!eval/eval_summary.txt
+!eval/eval_results.csv
