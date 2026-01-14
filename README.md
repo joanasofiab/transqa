@@ -70,6 +70,38 @@ python -m pip install streamlit pandas pyyaml
 
 ---
 
+````markdown
+## Quickstart (correr localmente)
+
+```powershell
+git clone https://github.com/joanasofiab/transqa.git
+cd transqa
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+streamlit run app.py
+````
+
+Abrir no browser: `http://localhost:8501`
+
+---
+
+## Avaliação (gold set)
+
+```powershell
+python -m eval.evaluate
+```
+
+Outputs gerados:
+
+* `eval/eval_results.csv`
+* `eval/eval_summary.csv`
+* `eval/eval_summary.txt`
+
+````
+
+---
+
 ## Executar a aplicação (Streamlit)
 
 ```powershell
