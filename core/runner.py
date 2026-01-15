@@ -12,6 +12,7 @@ from checks.currencies import check_currencies
 from checks.units import check_units
 from checks.ranges import check_ranges
 from checks.punctuation import check_punctuation
+from checks.placeholders import check_placeholders
 
 def run_all_checks(source: str, target: str, pair: str, config: Dict[str, Any]) -> List[Alert]:
     enabled = set(config.get("checks", {}).get("enabled", []))
@@ -45,6 +46,10 @@ def run_all_checks(source: str, target: str, pair: str, config: Dict[str, Any]) 
 
     if "punctuation" in enabled:
         alerts += check_punctuation(source, target)
+    
+    if "placeholders" in enabled:
+        allow_reorder = bool(config.get("rules", {}).get("placeholders_allow_reorder", True))
+        alerts += check_placeholders(source, target, allow_reorder=allow_reorder)
 
     sev_order = {"Critical": 0, "Warning": 1, "Info": 2}
     alerts.sort(key=lambda a: (sev_order.get(a.severity, 9), a.check))

@@ -12,8 +12,11 @@ checks:
     - units
     - ranges
     - punctuation
+    - placeholders
 
 rules:
   currency_symbols: ["€", "$", "£"]
   warn_ambiguous_numeric_dates: true
   units: ["mg", "g", "kg", "mm", "cm", "m", "km", "mL", "L", "°C", "km/h"]
+  placeholders_allow_reorder: true
+ 

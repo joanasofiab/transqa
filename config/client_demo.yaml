@@ -10,6 +10,7 @@ checks:
     - currencies
     - units
     - ranges
+    - placeholders
     # opcional (se quiseres): - punctuation
     # Nota: neste perfil não ativamos 'dates' para evitar avisos frequentes de ambiguidade.
 
@@ -30,3 +31,5 @@ rules:
     - cm
     - m
     - °C
+
+  placeholders_allow_reorder: true
