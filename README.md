@@ -100,33 +100,38 @@ Abrir no browser: `http://localhost:8501`
 
 O TransQA também suporta análise em lote via upload de CSV (útil para revisão de muitos segmentos).
 
-Exemplo: `data/batch_example.csv`
+Exemplo incluído: `data/batch_example.csv`
 
 ### Formato do CSV
 
 Colunas obrigatórias:
 
-* `source` — texto original
-* `target` — texto traduzido
+- `source` — texto original
+- `target` — texto traduzido
 
 Coluna opcional:
 
-* `pair` — par linguístico por linha (`EN->PT` / `ES->PT`). Se não existir, o sistema usa o par selecionado na interface.
+- `pair` — par linguístico por linha (`EN->PT` / `ES->PT`). Se não existir (ou estiver vazio), o sistema usa o par selecionado na interface.
 
-### Outputs
+### Exemplo mínimo
 
-Após processamento, a UI apresenta:
+```csv
+source,target,pair
+"Hello {name}.","Olá {name}.",EN->PT
+"Total: € 1,250.50","Total: 1.250,50 €",EN->PT
+"Rango 10–15 mg.","Intervalo 10–15 mg.",ES->PT
+````
 
-* **Resumo por linha** (n.º de alertas e distribuição por severidade)
-* **Alertas detalhados** (com `row_id`, `pair`, evidência e sugestão)
+### Como usar na interface
 
-Downloads disponíveis:
+1. Abrir a app: `streamlit run app.py`
+2. Na secção **Batch mode (CSV)**, carregar o ficheiro (ex.: `data/batch_example.csv`)
+3. Clicar em **Analisar CSV (Batch)**
+4. Fazer download dos resultados:
 
-* `transqa_batch_summary.csv`
-* `transqa_batch_alerts.csv`
-* `transqa_batch_alerts.html`
-
----
+   * `transqa_batch_summary.csv` (resumo por linha)
+   * `transqa_batch_alerts.csv` (alertas detalhados)
+   * `transqa_batch_alerts.html` (relatório em HTML)
 
 ## Avaliação (gold set)
 
@@ -134,7 +139,7 @@ Correr a avaliação com o perfil default:
 
 ```powershell
 python -m eval.evaluate
-```
+````
 
 Outputs gerados:
 
@@ -188,8 +193,6 @@ transqa/
   requirements.txt
   requirements-lock.txt
 ```
-
----
 
 ## Arquitetura (como o sistema funciona)
 
