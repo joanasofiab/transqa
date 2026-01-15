@@ -80,11 +80,21 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 streamlit run app.py
 
----
-## Avaliação (gold set)
+Abrir no browser: http://localhost:8501
 
-```powershell
+---
+Avaliação (gold set)
+
 python -m eval.evaluate
+
+
+Outputs gerados:
+
+eval/eval_results.csv
+
+eval/eval_summary.csv
+
+eval/eval_summary.txt
 
 ---
 
