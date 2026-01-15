@@ -17,3 +17,7 @@ case_id,lang_pair,source,target,expected_checks,notes
 16,EN->PT,"Read https://example.com/manual.pdf.","Consulte o manual.","Non-translate (URLs)","URL desapareceu (deve alertar)"
 17,EN->PT,"Ref: ABC-1234 must be included.","A referência deve ser incluída.","Non-translate (IDs)","ID desapareceu (deve alertar)"
 18,EN->PT,"Total cost: € 2500.","Custo total: 2500.","Currencies","Moeda desapareceu (símbolo não preservado)"
+19,EN->PT,"Hello {name}, your balance is $99.00.","Olá {name}, o seu saldo é $99,00.","Placeholders"
+20,EN->PT,"Click <a href=""https://example.com"">here</a> to continue.","Clique <a href=""https://example.com"">aqui</a> para continuar.","Placeholders|Non-translate (URLs)"
+21,EN->PT,"File saved.\nPlease restart.","Ficheiro guardado.\nPor favor reinicie.","Placeholders"
+22,ES->PT,"Hola {user}, tu pedido cuesta 20 €.","Olá {user}, o seu pedido custa 20 €.","Placeholders|Currencies"
