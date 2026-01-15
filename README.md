@@ -58,6 +58,36 @@ Abrir no browser: `http://localhost:8501`
 
 ---
 
+## Batch mode (CSV)
+
+O TransQA também suporta análise em lote via upload de CSV (útil para revisão de muitos segmentos).
+
+### Formato do CSV
+
+Colunas obrigatórias:
+
+* `source` — texto original
+* `target` — texto traduzido
+
+Coluna opcional:
+
+* `pair` — par linguístico por linha (`EN->PT` / `ES->PT`). Se não existir, o sistema usa o par selecionado na interface.
+
+### Outputs
+
+Após processamento, a UI apresenta:
+
+* **Resumo por linha** (n.º de alertas e distribuição por severidade)
+* **Alertas detalhados** (com `row_id`, `pair`, evidência e sugestão)
+
+Downloads disponíveis:
+
+* `transqa_batch_summary.csv`
+* `transqa_batch_alerts.csv`
+* `transqa_batch_alerts.html`
+
+---
+
 ## Avaliação (gold set)
 
 Correr a avaliação com o perfil default:
