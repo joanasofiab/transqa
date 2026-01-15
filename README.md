@@ -1,4 +1,3 @@
-````markdown
 # TransQA — Quality Assurance (QA) para Tradução (EN/ES → PT)
 
 TransQA é um protótipo de ferramenta de *Quality Assurance* para tradução, orientado a regras e configurável por cliente. O objetivo é detetar problemas frequentes em segmentos traduzidos (p.ex., números alterados, datas ambíguas, moedas/unidades omitidas, URLs/IDs não preservados), fornecendo alertas com evidências e sugestões de correção.
