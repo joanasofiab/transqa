@@ -229,6 +229,11 @@ python -m eval.evaluate
 
 ---
 
+## Versões
+- v1.0.0 — UI + batch CSV + export CSV/HTML + checks base + placeholders + gold set
+
+---
+
 ## Licença
 
 Projeto académico (uso educacional). Ajustar conforme requisitos da unidade curricular/instituição.
