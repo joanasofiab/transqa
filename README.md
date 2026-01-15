@@ -16,6 +16,7 @@ O projeto foi desenvolvido para ser **utilizável**, **reprodutível** e **facil
 - **Units** (valores com unidade)
 - **Ranges** (intervalos: `10–15`, `10-15`)
 - **Non-translate** (URLs, Emails, IDs)
+- **Placeholders** (ex.: {name}, %s, tags HTML, \n; preservação de tokens de localização)
 
 ### Configuração por perfil (YAML)
 - ativar/desativar checks
@@ -61,6 +62,8 @@ Abrir no browser: `http://localhost:8501`
 ## Batch mode (CSV)
 
 O TransQA também suporta análise em lote via upload de CSV (útil para revisão de muitos segmentos).
+
+Exemplo: `data/batch_example.csv`
 
 ### Formato do CSV
 
@@ -108,7 +111,6 @@ Para correr a avaliação com outro perfil:
 $env:TRANSQA_CONFIG="config\client_demo.yaml"
 python -m eval.evaluate
 ```
-
 ---
 
 ## Estrutura do projeto (visão geral)
