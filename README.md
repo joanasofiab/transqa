@@ -52,6 +52,25 @@ Métrica: case-level por check.
 
 ---
 
+## Exemplo rápido (single segment)
+
+**Source**
+```text
+Hello {name}, your balance is € 1,250.50 due on 03/04/2026. Contact: help@company.com
+```
+
+**Target**
+
+```text
+Olá, o seu saldo é 1.250,50 € com vencimento em 03/04/2026. Contacto: help@company.com
+```
+
+**O que o TransQA deve sinalizar (exemplo)**
+
+* **Placeholders**: `{name}` em falta (placeholder removido/alterado)
+* (Opcional, dependendo das regras) **Dates**: data numérica potencialmente ambígua em contexto EN (03/04/2026)
+* **Currencies/Numbers**: validação de preservação do valor monetário e do número (normalização EN/PT)
+
 ## Requisitos
 
 - Python 3.10+ (recomendado)
