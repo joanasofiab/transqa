@@ -32,6 +32,24 @@ O projeto foi desenvolvido para ser **utilizável**, **reprodutível** e **facil
 - execução por perfil
 - geração de resultados e métricas em `eval/`
 
+## Resultados da avaliação (gold set)
+
+Configuração: `config/default.yaml`  
+Métrica: case-level por check.
+
+ check | TP | FP | FN | F1 |
+| --- | --- | --- | --- | --- |
+| Currencies | 2 | 0 | 1 | 0.80 |
+| Dates | 3 | 0 | 0 | 1.00 |
+| Non-translate (Emails) | 1 | 0 | 0 | 1.00 |
+| Non-translate (IDs) | 1 | 0 | 0 | 1.00 |
+| Non-translate (URLs) | 1 | 0 | 1 | 0.67 |
+| Numbers | 1 | 0 | 0 | 1.00 |
+| Percentages | 2 | 0 | 0 | 1.00 |
+| Placeholders | 0 | 1 | 4 | 0.00 |
+| Ranges | 2 | 0 | 0 | 1.00 |
+| Units | 3 | 0 | 0 | 1.00 |
+
 ---
 
 ## Requisitos
