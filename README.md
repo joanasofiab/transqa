@@ -82,7 +82,6 @@ streamlit run app.py
 
 Abrir no browser: http://localhost:8501
 
----
 Avaliação (gold set)
 
 python -m eval.evaluate
@@ -96,15 +95,11 @@ eval/eval_summary.csv
 
 eval/eval_summary.txt
 
----
-
-## Executar a aplicação (Streamlit)
-
-```powershell
+Executar a aplicação (Streamlit)
 streamlit run app.py
-```
 
-Abrir no browser: `http://localhost:8501`
+
+Abrir no browser: http://localhost:8501
 
 ---
 
