@@ -96,6 +96,33 @@ Abrir no browser: `http://localhost:8501`
 
 ---
 
+## Demo (UI)
+
+Screenshots da interface (modo claro/noturno) e das principais funcionalidades:
+
+### Análise (1 segmento)
+![Single input](docs/screenshots/01_single_input.png)
+![Single results](docs/screenshots/02_single_results.png)
+
+### Batch mode (CSV/XLSX)
+![Batch upload](docs/screenshots/03_batch_upload.png)
+![Batch results](docs/screenshots/04_batch_results.png)
+---
+
+## Demo (UI)
+
+Screenshots da interface (modo claro/noturno) e das principais funcionalidades:
+
+### Análise (1 segmento)
+![Single input](docs/screenshots/01_single_input.png)
+![Single results](docs/screenshots/02_single_results.png)
+
+### Batch mode (CSV/XLSX)
+![Batch upload](docs/screenshots/03_batch_upload.png)
+![Batch results](docs/screenshots/04_batch_results.png)
+
+---
+
 ## Batch mode (CSV)
 
 O TransQA também suporta análise em lote via upload de CSV (útil para revisão de muitos segmentos).
