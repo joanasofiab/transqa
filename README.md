@@ -10,13 +10,13 @@ O projeto foi desenvolvido para ser **utilizável**, **reprodutível** e **facil
 
 ### Checks implementados (rule-based)
 - **Dates** (datas numéricas; deteção e aviso de ambiguidade)
-- **Numbers** (números gerais; com normalização PT/EN/ES e mitigação de falsos positivos em IDs)
+- **Numbers** (números gerais; normalização PT/EN/ES e mitigação de falsos positivos em IDs)
 - **Currencies** (montantes monetários; símbolo antes/depois do número)
 - **Percentages** (percentagens com `%`)
 - **Units** (valores com unidade)
 - **Ranges** (intervalos: `10–15`, `10-15`)
 - **Non-translate** (URLs, Emails, IDs)
-- **Placeholders** (ex.: {name}, %s, tags HTML, \n; preservação de tokens de localização)
+- **Placeholders** (ex.: `{name}`, `%s`, tags HTML, `\n`; preservação de tokens de localização)
 
 ### Configuração por perfil (YAML)
 - ativar/desativar checks
@@ -26,29 +26,31 @@ O projeto foi desenvolvido para ser **utilizável**, **reprodutível** e **facil
 ### Interface Streamlit
 - introdução de texto fonte e tradução
 - execução de QA e visualização de alertas (tabela)
+- filtros por severidade e por tipo de check
+- exportação CSV e HTML (download na interface)
 
 ### Avaliação automática (gold set)
 - leitura de `data/gold_cases.csv`
 - execução por perfil
 - geração de resultados e métricas em `eval/`
 
-## Resultados da avaliação (gold set)
+---
 
-Configuração: `config/default.yaml`  
-Métrica: case-level por check.
+## Demo
 
- check | TP | FP | FN | F1 |
-| --- | --- | --- | --- | --- |
-| Currencies | 2 | 0 | 1 | 0.80 |
-| Dates | 3 | 0 | 0 | 1.00 |
-| Non-translate (Emails) | 1 | 0 | 0 | 1.00 |
-| Non-translate (IDs) | 1 | 0 | 0 | 1.00 |
-| Non-translate (URLs) | 1 | 0 | 1 | 0.67 |
-| Numbers | 1 | 0 | 0 | 1.00 |
-| Percentages | 2 | 0 | 0 | 1.00 |
-| Placeholders | 0 | 1 | 4 | 0.00 |
-| Ranges | 2 | 0 | 0 | 1.00 |
-| Units | 3 | 0 | 0 | 1.00 |
+Screenshots de execução (modo claro/noturno) em `docs/screenshots/`.
+
+- **Single segment QA**: filtros por severidade/tipo de check e export CSV/HTML
+- **Batch QA (CSV/XLSX)**: resumo por linha e por check + detalhe de alertas e export
+- **Perfis YAML**: configuração por cliente/domínio (checks e regras)
+
+### Análise (1 segmento)
+![Single input](docs/screenshots/01_single_input.png)
+![Single results](docs/screenshots/02_single_results.png)
+
+### Batch mode (CSV/XLSX)
+![Batch upload](docs/screenshots/03_batch_upload.png)
+![Batch results](docs/screenshots/04_batch_results.png)
 
 ---
 
@@ -57,7 +59,7 @@ Métrica: case-level por check.
 **Source**
 ```text
 Hello {name}, your balance is € 1,250.50 due on 03/04/2026. Contact: help@company.com
-```
+````
 
 **Target**
 
@@ -68,20 +70,20 @@ Olá, o seu saldo é 1.250,50 € com vencimento em 03/04/2026. Contacto: help@c
 **O que o TransQA deve sinalizar (exemplo)**
 
 * **Placeholders**: `{name}` em falta (placeholder removido/alterado)
-* (Opcional, dependendo das regras) **Dates**: data numérica potencialmente ambígua em contexto EN (03/04/2026)
-* **Currencies/Numbers**: validação de preservação do valor monetário e do número (normalização EN/PT)
+* (Opcional, dependendo das regras) **Dates**: data numérica potencialmente ambígua (03/04/2026)
+* **Currencies/Numbers**: validação de preservação do valor monetário (normalização EN/PT)
+
+---
 
 ## Requisitos
 
-- Python 3.10+ (recomendado)
+* Python 3.10+ (recomendado)
 
 Instalação via `requirements.txt` (inclui Streamlit, Pandas e PyYAML).
 
 ---
 
 ## Quickstart (correr localmente)
-
-No PowerShell, na pasta onde queres clonar:
 
 ```powershell
 git clone https://github.com/joanasofiab/transqa.git
@@ -90,55 +92,26 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 streamlit run app.py
-````
+```
 
 Abrir no browser: `http://localhost:8501`
 
 ---
 
-## Demo (UI)
-
-Screenshots da interface (modo claro/noturno) e das principais funcionalidades:
-
-### Análise (1 segmento)
-![Single input](docs/screenshots/01_single_input.png)
-![Single results](docs/screenshots/02_single_results.png)
-
-### Batch mode (CSV/XLSX)
-![Batch upload](docs/screenshots/03_batch_upload.png)
-![Batch results](docs/screenshots/04_batch_results.png)
----
-
-## Demo (UI)
-
-Screenshots da interface (modo claro/noturno) e das principais funcionalidades:
-
-### Análise (1 segmento)
-![Single input](docs/screenshots/01_single_input.png)
-![Single results](docs/screenshots/02_single_results.png)
-
-### Batch mode (CSV/XLSX)
-![Batch upload](docs/screenshots/03_batch_upload.png)
-![Batch results](docs/screenshots/04_batch_results.png)
-
----
-
-## Batch mode (CSV)
-
-O TransQA também suporta análise em lote via upload de CSV (útil para revisão de muitos segmentos).
+## Batch mode (CSV/XLSX)
 
 Exemplo incluído: `data/batch_example.csv`
 
-### Formato do CSV
+### Formato do ficheiro
 
 Colunas obrigatórias:
 
-- `source` — texto original
-- `target` — texto traduzido
+* `source` — texto original
+* `target` — texto traduzido
 
 Coluna opcional:
 
-- `pair` — par linguístico por linha (`EN->PT` / `ES->PT`). Se não existir (ou estiver vazio), o sistema usa o par selecionado na interface.
+* `pair` — par linguístico por linha (`EN->PT` / `ES->PT`). Se não existir (ou estiver vazio), o sistema usa o par selecionado na interface.
 
 ### Exemplo mínimo
 
@@ -147,18 +120,21 @@ source,target,pair
 "Hello {name}.","Olá {name}.",EN->PT
 "Total: € 1,250.50","Total: 1.250,50 €",EN->PT
 "Rango 10–15 mg.","Intervalo 10–15 mg.",ES->PT
-````
+```
 
 ### Como usar na interface
 
 1. Abrir a app: `streamlit run app.py`
-2. Na secção **Batch mode (CSV)**, carregar o ficheiro (ex.: `data/batch_example.csv`)
-3. Clicar em **Analisar CSV (Batch)**
-4. Fazer download dos resultados:
+2. Ir a **Batch mode (CSV/XLSX)** e carregar o ficheiro (ex.: `data/batch_example.csv`)
+3. Clicar em **Analisar ficheiro (Batch)**
+4. Fazer download dos resultados (botões de export):
 
-   * `transqa_batch_summary.csv` (resumo por linha)
-   * `transqa_batch_alerts.csv` (alertas detalhados)
-   * `transqa_batch_alerts.html` (relatório em HTML)
+   * resumo por linha (CSV)
+   * resumo por check (CSV)
+   * alertas detalhados (CSV)
+   * relatório (HTML)
+
+---
 
 ## Avaliação (gold set)
 
@@ -166,7 +142,7 @@ Correr a avaliação com o perfil default:
 
 ```powershell
 python -m eval.evaluate
-````
+```
 
 Outputs gerados:
 
@@ -180,6 +156,27 @@ Para correr a avaliação com outro perfil:
 $env:TRANSQA_CONFIG="config\client_demo.yaml"
 python -m eval.evaluate
 ```
+
+---
+
+## Resultados da avaliação (gold set)
+
+Configuração: `config/default.yaml`
+Métrica: case-level por check.
+
+| check                  | TP | FP | FN |   F1 |
+| ---------------------- | -: | -: | -: | ---: |
+| Currencies             |  2 |  0 |  1 | 0.80 |
+| Dates                  |  3 |  0 |  0 | 1.00 |
+| Non-translate (Emails) |  1 |  0 |  0 | 1.00 |
+| Non-translate (IDs)    |  1 |  0 |  0 | 1.00 |
+| Non-translate (URLs)   |  1 |  0 |  1 | 0.67 |
+| Numbers                |  1 |  0 |  0 | 1.00 |
+| Percentages            |  2 |  0 |  0 | 1.00 |
+| Placeholders           |  0 |  1 |  4 | 0.00 |
+| Ranges                 |  2 |  0 |  0 | 1.00 |
+| Units                  |  3 |  0 |  0 | 1.00 |
+
 ---
 
 ## Estrutura do projeto (visão geral)
@@ -209,6 +206,7 @@ transqa/
     normalize.py
   data/
     gold_cases.csv
+    batch_example.csv
   eval/
     __init__.py
     evaluate.py
@@ -219,7 +217,11 @@ transqa/
     html_report.py
   requirements.txt
   requirements-lock.txt
+  docs/
+    screenshots/
 ```
+
+---
 
 ## Arquitetura (como o sistema funciona)
 
@@ -231,7 +233,7 @@ transqa/
    * nome do check
    * evidência em source/target
    * mensagem e sugestão
-4. **UI** (`app.py`) apresenta resultados em tabela.
+4. **UI** (`app.py`) apresenta resultados e exportação.
 
 ---
 
@@ -288,16 +290,15 @@ python -m eval.evaluate
 
 ## Roadmap (extensões futuras)
 
-* Batch mode (upload CSV de segmentos e relatório agregado)
-* Exportação de relatório (CSV/HTML/PDF)
-* Check de placeholders (ex.: `{name}`, `%s`, `\n`, etc.)
 * Check terminológico (glossário por cliente/domínio)
 * CLI estável para integração com pipelines de tradução
+* Melhorias de UX: tooltips/legenda de severidades e explicação de checks
 
 ---
 
 ## Versões
-- v1.0.0 — UI + batch CSV + export CSV/HTML + checks base + placeholders + gold set
+
+* v1.0.0 — UI (single + batch), export CSV/HTML, perfis YAML, checks base + placeholders, avaliação com gold set
 
 ---
 
